@@ -8,31 +8,60 @@ function Favorites() {
   useEffect(()=>{
 
     // get array of favorites from localStorage.getItem("favs") if exists, otherwise it's an empty []
+    let jsonstr = localStorage.getItem("favs")
+    let arr = []
+    if (jsonstr){
+      arr = JSON.parse(jsonstr)
+    }
+    setFavs(arr);
 
     // mocking data for now
-    var favsFromLocalStorage = [
-      {
-        image: "https://1",
-        title: "Title 1"
-      },
-      {
-        image: "https://2",
-        title: "Title 2"
-      }
-    ]
+    // var favsFromLocalStorage = [
+    //   {
+    //     image: "https://1",
+    //     title: "Title 1",
+    //     joke: "Some Joke 1"
+    //   },
+    //   {
+    //     image: "https://2",
+    //     title: "Title 2"
+    //     joke: "Some Joke 2"
+    //   }
+    // ]
 
-    setFavs(favsFromLocalStorage)
+    // setFavs(favsFromLocalStorage)
 
   }, []) // run once after react page finishes loading
 
+  function removeFav(i) {
+    //alert(i)
+    // Get all favs from the localstorage
+    let jsonstr = localStorage.getItem("favs")
+    let arr = []
+    if (jsonstr){
+      arr = JSON.parse(jsonstr)
+    }
+    arr.splice(i, 1)
+    setFavs(arr);
+
+    localStorage.setItem("favs", JSON.stringify(arr))
+
+    // convert favs string into array
+    // remove item from array if joke matches
+  }
+
   return (
     <>
+    <h2 className="text-xl text-center mb-6">Favorites</h2>
       <ul>
-      {favs.map((favObject, i) => {
+      {favs.map((favObject,i) => {
         return (
-          <li key={"fav-"+i}>
-            <b>Iframe url</b>: {favObject.image}<br/>
-            <b>Title</b>: {favObject.title}
+          <li key={"fav-"+i} className="mb-12 p-4">
+            Meme {i+1}.<br/>
+            <iframe src={favObject.image}></iframe>
+            <b>Title</b>: {favObject.title}<br/>
+            <b>Joke</b>: {favObject.joke}<br/>
+            <button className="border bg-red-50 p-1 mt-2" onClick={()=>{ removeFav(i) }}>Remove from Favorites</button>
           </li>
         )
       })}

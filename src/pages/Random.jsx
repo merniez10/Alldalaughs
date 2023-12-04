@@ -64,6 +64,25 @@ var [image, setImage] = useState("")
   //useEffect(()=>{
   //  console.log("Something's changed on the webpage because of initialization, or a value in JSX has changed")
   //})
+  function addFav() {
+    alert("Successfully added to favorites.")
+
+    let savingItems = []
+    
+    let jsonstrOld = localStorage.getItem("favs")
+    if(jsonstrOld) {
+      savingItems = JSON.parse(jsonstrOld)
+    }
+
+    // Add new item into X position or 0th position
+    savingItems.push({
+        image:image,
+        title:title,
+        joke
+    })
+    let jsonstr = JSON.stringify(savingItems)
+    localStorage.setItem("favs", jsonstr)
+  }
 
   return (
     <>
@@ -75,6 +94,14 @@ var [image, setImage] = useState("")
         <h3>{title}</h3>
         <button className="border bg-green-50 p-1 mt-2" onClick={()=>{ getJoke() }}>Get Joke</button>
         <div id = "joke" className="bg-gray-50 mt-5">{joke}</div>
+        <br/>
+        <br/>
+       {
+          joke.length>0 ?
+         (<button className="border bg-purple-50 p-1 mt-2" onClick={()=>{ addFav() }}>Add to Favorites</button>)
+         : ""
+
+       }
       </div>
     </>
   )
