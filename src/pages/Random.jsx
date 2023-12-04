@@ -87,18 +87,18 @@ var [image, setImage] = useState("")
   return (
     <>
       <div className="text-center">
-        <h2 className="text-lg">Random Meme</h2>
+        <h2 className="jokeTitle text-lg">Random Meme</h2>
         <div className="flex justify-center">
           <iframe src={image} className="block-center"/>
         </div>
         <h3>{title}</h3>
-        <button className="border bg-green-50 p-1 mt-2" onClick={()=>{ getJoke() }}>Get Joke</button>
-        <div id = "joke" className="bg-gray-50 mt-5">{joke}</div>
+        <button className="border rounded bg-slate-500 border-slate-500 p-1 mt-2" onClick={()=>{ getJoke() }}>Get Joke</button>
+        <div id = "joke" className="mt-5">{joke}</div>
         <br/>
         <br/>
        {
           joke.length>0 ?
-         (<button className="border bg-purple-50 p-1 mt-2" onClick={()=>{ addFav() }}>Add to Favorites</button>)
+         (<button className="border rounded bg-slate-500 border-slate-500 p-1 mt-2" onClick={()=>{ addFav() }}>Add to Favorites</button>)
          : ""
 
        }

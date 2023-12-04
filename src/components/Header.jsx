@@ -10,10 +10,10 @@ function Header() {
         <nav>
           <ul className="flex space-x-6">
             <li>
-              <Link to="/">Random</Link>
+              <Link to="/" className="border rounded bg-slate-500 border-slate-500">Random</Link>
             </li>
             <li>
-              <Link to="/Favorites">Favorites</Link>
+              <Link to="/Favorites" className="border rounded bg-slate-500 border-slate-500">Favorites</Link>
             </li>
           </ul>
         </nav>

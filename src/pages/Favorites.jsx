@@ -56,12 +56,14 @@ function Favorites() {
       <ul>
       {favs.map((favObject,i) => {
         return (
-          <li key={"fav-"+i} className="mb-12 p-4">
-            Meme {i+1}.<br/>
+          <li key={"fav-"+i} className="mb-12 text-center font-mono p-4">
+            Meme {i+1}<br/>
+            <div className="flex justify-center">
             <iframe src={favObject.image}></iframe>
+            </div>
             <b>Title</b>: {favObject.title}<br/>
             <b>Joke</b>: {favObject.joke}<br/>
-            <button className="border bg-red-50 p-1 mt-2" onClick={()=>{ removeFav(i) }}>Remove from Favorites</button>
+            <button className="border rounded bg-slate-500 border-slate-500 p-1 mt-2" onClick={()=>{ removeFav(i) }}>Remove from Favorites</button>
           </li>
         )
       })}
